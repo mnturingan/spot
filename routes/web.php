@@ -11,6 +11,8 @@ use App\Http\Controllers\VenueController;
 
 use App\Http\Controllers\ReservationController;
 
+use App\Http\Controllers\HomeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,9 +24,7 @@ use App\Http\Controllers\ReservationController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'home']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

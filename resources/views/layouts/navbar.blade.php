@@ -26,7 +26,7 @@
                                 <span class="text-dark">{{ auth()->user()->name }}</span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end">
-                                    <form action="{{ route('admin.logout') }}" method="post">
+                                    <form action="{{ route('user.logout') }}" method="post">
                                         @csrf
                                         <button type="submit" class="dropdown-item">Log out</button>
                                     </form>
