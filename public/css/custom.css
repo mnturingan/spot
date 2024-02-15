@@ -1,0 +1,7 @@
+/* .sidebar-link i.rotate-icon {
+    transition: transform 0.3s ease;
+}
+
+.sidebar-link[aria-expanded="true"] i.rotate-icon {
+    transform: rotate(90deg);
+} */
