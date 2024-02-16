@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 
 use App\Models\User;
 
+use App\Models\VenueType;
+
 use App\Models\Reservation;
 
 class ReservationController extends Controller
@@ -110,7 +112,13 @@ class ReservationController extends Controller
             )
         )", [$reservationDate, $startTime, $endTime, $startTime, $endTime]);
 
-        return response()->json(['data' => $avenues]);
+        $data=[];
+        foreach($avenues as $venue){
+            $venueTypes = VenueType::find($venue->venue_type_id);
+            $data[]=['venue' => $venue, 'venue_type' => $venueTypes];
+        }
+
+        return response()->json(['data' => $data]);
     }
 
     public function userReservation()

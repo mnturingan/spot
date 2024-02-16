@@ -89,7 +89,7 @@
                 success: function (res) {
                     var _html = '';
                     $.each(res.data, function (index, row) {
-                        _html += '<option value="' + row.id + '">' + row.venue_code + '</option>';
+                        _html += '<option value="' + row.venue.id + '">' + row.venue.venue_code + ' - ' + row.venue_type.title + '</option>';
                     });
                     $(".venue-list").html(_html);
                 }
