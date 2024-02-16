@@ -19,7 +19,8 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        //
+        $reservations=Reservation::all();
+        return view('admin.reservation.index', ['data'=>$reservations]);
     }
 
     /**
@@ -27,7 +28,7 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        return view('admin.reservation.create');
+        return view('reservation.create');
     }
 
     /**
@@ -58,6 +59,7 @@ class ReservationController extends Controller
         $data->reservation_date = $request->reservation_date;
         $data->start_time = $request->start_time;
         $data->end_time = $request->end_time;
+        $data->status = 'pending';
         $data->purpose = $request->purpose;
         $data->save();
         
@@ -94,7 +96,8 @@ class ReservationController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Reservation::where('id', $id)->delete();
+        return redirect('admin/reservation')->with('success', 'Data is deleted');
     }
 
     // Check availability
@@ -125,4 +128,23 @@ class ReservationController extends Controller
     {
         return view('reservation.create');
     }
+
+    public function approve($id)
+    {
+        $reservation = Reservation::findOrFail($id);
+        $reservation->status = 'approved';
+        $reservation->save();
+
+        return redirect()->back()->with('success', 'Reservation Approved');
+    }
+
+    public function reject($id)
+    {
+        $reservation = Reservation::findOrFail($id);
+        $reservation->status = 'rejected';
+        $reservation->save();
+
+        return redirect()->back()->with('success', 'Reservation Rejected');
+    }
+
 }

@@ -1,9 +1,16 @@
 <nav id="sidebar" class="sidebar js-sidebar">
             <div class="sidebar-content js-simplebar">
                 <a class="sidebar-brand" href="{{url ('admin/dashboard')}}">
-                    <span class="align-middle">Spot</span>
+                <img src="https://rams.apc.edu.ph/logo/mini-logo.png" width="150px"> 
                 </a>
                 <ul class="sidebar-nav">
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="{{url('admin/dashboard')}}">
+						<i class="align-middle" data-feather="sliders"></i> 
+                            <span class="align-middle">Dashboard</span>
+                        </a>
+                    </li>
+                    
                     <!-- navitem collape -->
                     <li class="sidebar-item">
                         <a class="sidebar-link" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -28,7 +35,7 @@
                     <!-- navitem collapse end -->
             
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="pages-profile.html">
+                        <a class="sidebar-link" href="{{url('admin/reservation')}}">
 						<i class="align-middle" data-feather="book"></i> 
                             <span class="align-middle">Reservations</span>
                         </a>

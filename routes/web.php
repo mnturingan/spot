@@ -59,6 +59,10 @@ Route::middleware(['auth'])->group(function () {
         //Venue Routes
         Route::get('admin/venue/{id}/delete', [VenueController::class, 'destroy']);
         Route::resource('admin/venue', VenueController::class);
+
+        Route::get('admin/reservation/{id}/approve', [ReservationController::class, 'approve'])->name('admin.reservation.approve');
+        Route::get('admin/reservation/{id}/reject', [ReservationController::class, 'reject'])->name('admin.reservation.reject');
+
     });// End Group Admin Middleware
 
 });
