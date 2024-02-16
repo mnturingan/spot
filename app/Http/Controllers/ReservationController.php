@@ -42,6 +42,15 @@ class ReservationController extends Controller
         ]);
 
         $data = new Reservation;
+
+        // Check if the user is authenticated
+        if (auth()->check()) {
+            $data->user_id = auth()->user()->id;
+        } else {
+            // Handle the case where the user is not authenticated (e.g., redirect to login)
+            return redirect()->route('login')->with('error', 'You must be logged in to make a reservation.');
+        }
+
         $data->user_id = auth()->user()->id;
         $data->venue_id = $request->venue_id;
         $data->reservation_date = $request->reservation_date;
@@ -51,7 +60,7 @@ class ReservationController extends Controller
         $data->save();
         
 
-        return redirect('admin/reservation/create')->with('success', "Data is added.");
+        return redirect('reservation/create')->with('success', "Data is added.");
     }
 
     /**
@@ -102,5 +111,10 @@ class ReservationController extends Controller
         )", [$reservationDate, $startTime, $endTime, $startTime, $endTime]);
 
         return response()->json(['data' => $avenues]);
+    }
+
+    public function userReservation()
+    {
+        return view('reservation.create');
     }
 }

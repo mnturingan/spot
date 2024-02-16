@@ -26,13 +26,6 @@
                         </div>
                     </li>
                     <!-- navitem collapse end -->
-                    
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="{{url('admin/reservation/create')}}">
-						<i class="align-middle" data-feather="book"></i> 
-                            <span class="align-middle">Reserve</span>
-                        </a>
-                    </li>
             
                     <li class="sidebar-item">
                         <a class="sidebar-link" href="pages-profile.html">

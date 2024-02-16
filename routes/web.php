@@ -24,7 +24,9 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', [HomeController::class, 'home']);
+Route::get('/', function () {
+    return view('auth/login');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -41,6 +43,8 @@ require __DIR__.'/auth.php';
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [HomeController::class, 'userDashboard'])->name('user.dashboard');
     Route::post('/logout', [HomeController::class, 'userLogout'])->name('user.logout');
+
+    Route::get('reservation/create', [ReservationController::class, 'userReservation']);
 
     Route::middleware(['role:admin'])->group(function () {
         Route::get('/admin/dashboard', [AdminController::class, 'adminDashboard'])->name('admin.dashboard');
