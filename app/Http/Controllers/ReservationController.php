@@ -59,7 +59,7 @@ class ReservationController extends Controller
         $data->reservation_date = $request->reservation_date;
         $data->start_time = $request->start_time;
         $data->end_time = $request->end_time;
-        $data->status = 'pending';
+        $data->status = 'waiting';
         $data->purpose = $request->purpose;
         $data->save();
         
@@ -129,13 +129,16 @@ class ReservationController extends Controller
         return view('reservation.create');
     }
 
-    public function approve($id)
+    public function acknowledge($id)
     {
         $reservation = Reservation::findOrFail($id);
-        $reservation->status = 'approved';
+        $reservation->status = 'acknowledged';
         $reservation->save();
 
-        return redirect()->back()->with('success', 'Reservation Approved');
+        // Send acknowledgment email to the user (you'll need to implement this)
+        // You can use Laravel's built-in Mail functionality here
+
+        return redirect()->back()->with('success', 'Reservation Acknowledged');
     }
 
     public function reject($id)
@@ -144,7 +147,15 @@ class ReservationController extends Controller
         $reservation->status = 'rejected';
         $reservation->save();
 
+        // You may want to provide a reason for rejection or notify the user in some way
+
         return redirect()->back()->with('success', 'Reservation Rejected');
     }
 
+
+    public function myReservations()
+    {
+        $userReservations = Reservation::where('user_id', auth()->id())->get();
+        return view('reservation.my-reservations', ['userReservations' => $userReservations]);
+    }
 }

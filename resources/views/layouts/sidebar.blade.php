@@ -20,7 +20,7 @@
                     </li>
             
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="pages-profile.html">
+                        <a class="sidebar-link" href="{{ route('reservation.my-reservations') }}">
 						<i class="align-middle" data-feather="book"></i> 
                             <span class="align-middle">My Reservations</span>
                         </a>

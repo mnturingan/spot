@@ -60,8 +60,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('admin/venue/{id}/delete', [VenueController::class, 'destroy']);
         Route::resource('admin/venue', VenueController::class);
 
-        Route::get('admin/reservation/{id}/approve', [ReservationController::class, 'approve'])->name('admin.reservation.approve');
+        //Reservation Action
+        Route::get('admin/reservation/{id}/acknowledge', [ReservationController::class, 'acknowledge'])->name('admin.reservation.acknowledge');
         Route::get('admin/reservation/{id}/reject', [ReservationController::class, 'reject'])->name('admin.reservation.reject');
+
 
     });// End Group Admin Middleware
 
@@ -73,3 +75,4 @@ Route::get('admin/reservation/{id}/delete', [ReservationController::class, 'dest
 Route::match(['get', 'post'], 'admin/reservation/available-venues', [ReservationController::class, 'available_venues']);
 Route::resource('admin/reservation', ReservationController::class);
 
+Route::get('my-reservations', [ReservationController::class, 'myReservations'])->name('reservation.my-reservations');
