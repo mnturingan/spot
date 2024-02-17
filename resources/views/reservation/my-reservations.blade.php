@@ -39,17 +39,26 @@
                     </tr>
                 </tfoot>
                 <tbody>
-                        @foreach($userReservations as $reservation)
-                            <tr>
-                                <td>{{$reservation->id}}</td>
-                                <td>{{$reservation->venue->venue_code}}</td>
-                                <td>{{$reservation->venue->VenueType->title}}</td>
-                                <td>{{$reservation->reservation_date}}</td>
-                                <td>{{$reservation->start_time}}</td>
-                                <td>{{$reservation->end_time}}</td>
-                                <td>{{$reservation->purpose}}</td>
-                            </tr>
-                        @endforeach
+                    @foreach($userReservations as $reservation)
+                    <tr>
+                        <td>{{$reservation->id}}</td>
+                        <td>{{$reservation->venue->venue_code}}</td>
+                        <td>{{$reservation->venue->VenueType->title}}</td>
+                        <td>{{$reservation->reservation_date}}</td>
+                        <td>{{$reservation->start_time}}</td>
+                        <td>{{$reservation->end_time}}</td>
+                        <td>{{$reservation->purpose}}</td>
+                        <td>
+                            @if ($reservation->status == 'acknowledged')
+                            <span class="badge bg-success">Acknowledged</span>
+                            @elseif ($reservation->status == 'rejected')
+                            <span class="badge bg-danger">Rejected</span>
+                            @else
+                            <span class="badge bg-warning">Waiting</span>
+                            @endif
+                        </td>
+                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

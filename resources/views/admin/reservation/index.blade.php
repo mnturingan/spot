@@ -55,7 +55,7 @@
                                     @if ($reservation->status == 'acknowledged')
                                     <button class="btn btn-success btn-sm" disabled>Acknowledged</button>
                                     @elseif ($reservation->status == 'rejected')
-                                        <span class="badge badge-warning">Rejected</span>
+                                    <button class="btn btn-warning btn-sm" disabled>Rejected</button>
                                     @else
                                         <a href="{{ route('admin.reservation.acknowledge', $reservation->id) }}" class="btn btn-info btn-sm">
                                             <i data-feather="check-circle"></i> Acknowledge
