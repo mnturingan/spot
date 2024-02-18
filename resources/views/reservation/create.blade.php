@@ -19,7 +19,7 @@
                     @if(Session::has('success'))
                         <p class="text-success">{{session('success')}}</p>
                     @endif
-                    <form enctype="multipart/form-data" method="post" action="{{url('admin/reservation')}}">
+                    <form enctype="multipart/form-data" method="post" action="{{url('reservation')}}">
                         @csrf
                         <label for="reservation_date" class="form-label reserve-date">Reservation Date</label>
                         <input name="reservation_date" type="date" class="form-control">
@@ -74,7 +74,7 @@
        
         if (reservationDate && startTime && endTime) {
             $.ajax({
-                url: "{{ url('admin/reservation')}}/available-venues",
+                url: "{{ url('reservation')}}/available-venues",
                 type: 'POST',
                 data: {
                     _token: '{{ csrf_token() }}', // Add this line to include the CSRF token

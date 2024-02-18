@@ -71,8 +71,12 @@ Route::middleware(['auth'])->group(function () {
 
 
 // Reservation
-Route::get('admin/reservation/{id}/delete', [ReservationController::class, 'destroy']);
-Route::match(['get', 'post'], 'admin/reservation/available-venues', [ReservationController::class, 'available_venues']);
+Route::get('reservation/{id}/delete', [ReservationController::class, 'destroy']);
+Route::match(['get', 'post'], 'reservation/available-venues', [ReservationController::class, 'available_venues']);
 Route::resource('admin/reservation', ReservationController::class);
+
+// Route::get('admin/reservation/{id}/edit', [ReservationController::class, 'edit'])->name('admin.reservation.edit');
+// Route::put('admin/reservation/{id}', [ReservationController::class, 'update'])->name('admin.reservation.update');
+
 
 Route::get('my-reservations', [ReservationController::class, 'myReservations'])->name('reservation.my-reservations');

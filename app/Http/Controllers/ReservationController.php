@@ -97,7 +97,7 @@ class ReservationController extends Controller
     public function destroy(string $id)
     {
         Reservation::where('id', $id)->delete();
-        return redirect('admin/reservation')->with('success', 'Data is deleted');
+        return redirect('reservation')->with('success', 'Data is deleted');
     }
 
     // Check availability
@@ -135,23 +135,24 @@ class ReservationController extends Controller
         $reservation->status = 'acknowledged';
         $reservation->save();
 
-        // Send acknowledgment email to the user (you'll need to implement this)
-        // You can use Laravel's built-in Mail functionality here
+        // Send acknowledgment email to the user (implement as needed)
 
         return redirect()->back()->with('success', 'Reservation Acknowledged');
     }
 
-    public function reject($id)
-    {
+    public function reject(Request $request, $id)
+{
+        $request->validate([
+            'rejected_reason' => 'required|string',
+        ]);
+
         $reservation = Reservation::findOrFail($id);
         $reservation->status = 'rejected';
+        $reservation->rejected_reason = $request->rejected_reason;
         $reservation->save();
-
-        // You may want to provide a reason for rejection or notify the user in some way
 
         return redirect()->back()->with('success', 'Reservation Rejected');
     }
-
 
     public function myReservations()
     {
