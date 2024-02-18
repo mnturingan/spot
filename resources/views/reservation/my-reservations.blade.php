@@ -53,6 +53,9 @@
                             <span class="badge bg-success">Acknowledged</span>
                             @elseif ($reservation->status == 'rejected')
                             <span class="badge bg-danger">Rejected</span>
+                            <a href="" class="btn btn-info btn-sm">
+                                <i data-feather="edit"></i>
+                            </a>
                             @else
                             <span class="badge bg-warning">Waiting</span>
                             @endif
