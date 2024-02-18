@@ -1,4 +1,8 @@
-@extends('admin/layouts.app')
+@php
+    $layout = Auth::user()->user_type === 'admin' ? 'admin.layouts.app' : 'layouts.app';
+@endphp
+
+@extends($layout)
 
 @section('content')
 

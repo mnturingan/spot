@@ -19,7 +19,7 @@
                     @if(Session::has('success'))
                         <p class="text-success">{{session('success')}}</p>
                     @endif
-                    <form enctype="multipart/form-data" method="post" action="{{url('eservation')}}">
+                    <form enctype="multipart/form-data" method="post" action="{{url('admin/reservation')}}">
                         @csrf
                         <label for="reservation_date" class="form-label reserve-date">Reservation Date</label>
                         <input name="reservation_date" type="date" class="form-control">
