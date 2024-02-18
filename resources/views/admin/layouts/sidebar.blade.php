@@ -44,7 +44,7 @@
                     <!-- MESSAGES SECTION -->
                     
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="pages-sign-up.html">
+                        <a class="sidebar-link" href="{{url('chatify')}}">
                         <i class="align-middle" data-feather="message-square"></i>   
                             <span class="align-middle">Messages</span>
                         </a>
