@@ -40,6 +40,8 @@
                             <span class="align-middle">Reservations</span>
                         </a>
                     </li>
+
+                    <!-- MESSAGES SECTION -->
                     
                     <li class="sidebar-item">
                         <a class="sidebar-link" href="pages-sign-up.html">
