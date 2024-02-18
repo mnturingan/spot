@@ -10,6 +10,8 @@ use App\Models\User;
 
 use App\Models\VenueType;
 
+use App\Models\Venue;
+
 use App\Models\Reservation;
 
 class ReservationController extends Controller
@@ -78,10 +80,18 @@ class ReservationController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $reservation = Reservation::find($id);
+        $venues = Venue::all(); // replace Venue with your actual model name for venues
+
+        // Format the start_time and end_time to match the format in the view
+        $reservation->start_time = date('H:i', strtotime($reservation->start_time));
+        $reservation->end_time = date('H:i', strtotime($reservation->end_time));
+
+        return view('reservation.edit', compact('reservation', 'venues'));
     }
+
 
     /**
      * Update the specified resource in storage.

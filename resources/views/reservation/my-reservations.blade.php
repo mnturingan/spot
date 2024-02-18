@@ -53,7 +53,7 @@
                             <span class="badge bg-success">Acknowledged</span>
                             @elseif ($reservation->status == 'rejected')
                             <span class="badge bg-danger">Rejected</span>
-                            <a href="" class="btn btn-info btn-sm">
+                            <a href="{{ route('reservation.edit', $reservation->id) }}" class="btn btn-info btn-sm">
                                 <i data-feather="edit"></i>
                             </a>
                             @else
