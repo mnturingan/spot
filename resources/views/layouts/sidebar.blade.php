@@ -1,7 +1,7 @@
 <nav id="sidebar" class="sidebar js-sidebar">
             <div class="sidebar-content js-simplebar">
                 <a class="sidebar-brand" href="{{url ('admin/dashboard')}}">
-                    <span class="align-middle">Spot</span>
+                <img src="https://rams.apc.edu.ph/logo/mini-logo.png" width="150px">
                 </a>
                 <ul class="sidebar-nav">
 

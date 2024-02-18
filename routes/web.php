@@ -75,8 +75,8 @@ Route::get('reservation/{id}/delete', [ReservationController::class, 'destroy'])
 Route::match(['get', 'post'], 'reservation/available-venues', [ReservationController::class, 'available_venues']);
 Route::resource('admin/reservation', ReservationController::class);
 
-// Route::get('admin/reservation/{id}/edit', [ReservationController::class, 'edit'])->name('admin.reservation.edit');
-// Route::put('admin/reservation/{id}', [ReservationController::class, 'update'])->name('admin.reservation.update');
+Route::get('reservation/{id}/edit', [ReservationController::class, 'edit'])->name('reservation.edit');
+Route::put('reservation/{id}', [ReservationController::class, 'update'])->name('reservation.update');
 
 
 Route::get('my-reservations', [ReservationController::class, 'myReservations'])->name('reservation.my-reservations');
