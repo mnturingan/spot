@@ -14,7 +14,6 @@
             <table class="table table-hover my-0">
                 <thead>
                     <tr>
-                        <th class="d-none d-md-table-cell">#</th>
                         <th class="d-none d-md-table-cell">Venue Type</th>
                         <th class="d-none d-md-table-cell">Code</th>
                         <th class="d-none d-md-table-cell">Capacity</th>
@@ -23,7 +22,6 @@
                 </thead>
                 <tfoot>
                     <tr>
-                        <th class="d-none d-md-table-cell">#</th>
                         <th class="d-none d-md-table-cell">Venue Type</th>
                         <th class="d-none d-md-table-cell">Code</th>
                         <th class="d-none d-md-table-cell">Capacity</th>
@@ -34,7 +32,6 @@
                     @if($data && count($data) > 0)
                         @foreach($data as $d)
                             <tr>
-                                <td>{{$d->id}}</td>
                                 <td>{{$d->venueType->title}}</td>
                                 <td>{{$d->venue_code}}</td>
                                 <td>{{$d->capacity}}</td>

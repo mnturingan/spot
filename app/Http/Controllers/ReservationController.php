@@ -22,6 +22,7 @@ class ReservationController extends Controller
     public function index()
     {
         $reservations=Reservation::all();
+        $reservations = Reservation::orderBy('created_at', 'desc')->get();
         return view('admin.reservation.index', ['data'=>$reservations]);
     }
 
@@ -63,8 +64,20 @@ class ReservationController extends Controller
         $data->end_time = $request->end_time;
         $data->status = 'waiting';
         $data->purpose = $request->purpose;
+
+        $file = $request->file('file');
+
+        if ($file) {
+            $fileName = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('apf'), $fileName);
+            $data->file = $fileName;
+        }
+
+        $data->school_org = $request->input('school_org') ? true : false;
+
         $data->save();
         
+        return response()->json(['success'=>'You have successfully reserved a venue.']);
 
         return redirect('reservation/create')->with('success', "Data is added.");
     }
@@ -152,13 +165,8 @@ class ReservationController extends Controller
 
     public function reject(Request $request, $id)
 {
-        $request->validate([
-            'rejected_reason' => 'required|string',
-        ]);
-
         $reservation = Reservation::findOrFail($id);
         $reservation->status = 'rejected';
-        $reservation->rejected_reason = $request->rejected_reason;
         $reservation->save();
 
         return redirect()->back()->with('success', 'Reservation Rejected');

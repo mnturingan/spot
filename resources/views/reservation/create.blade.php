@@ -19,7 +19,7 @@
                     @if(Session::has('success'))
                         <p class="text-success">{{session('success')}}</p>
                     @endif
-                    <form enctype="multipart/form-data" method="post" action="{{url('admin/reservation')}}">
+                    <form enctype="multipart/form-data" method="post" action="{{url('admin/reservation')}}" id="form_upload">
                         @csrf
                         <label for="reservation_date" class="form-label reserve-date">Reservation Date</label>
                         <input name="reservation_date" type="date" class="form-control">
@@ -51,10 +51,24 @@
                         </select>
                         <br>
 
-                        <label for="purpose" class="form-label">Purpose</label>
-                        <textarea name="purpose" class="form-control" id="purpose" rows="3"></textarea>
+                        <label for="purpose" class="form-label"><strong>Purpose</strong></label>
+                        <textarea name="purpose" class="form-control" id="purpose" rows="3" placeholder="Please provide a valid purpose to avoid getting rejected..."></textarea>
                         <br>
-                        
+
+                        <label class="form-check">
+                            <input id="school-org-checkbox" class="form-check-input" type="checkbox" name="school_org" value="1">
+                            <span class="form-check-label">
+                                For school organization
+                            </span>
+                        </label>
+                        <br>
+
+                        <div id="file-input-div" style="display: none;">
+                            <label for="exampleFormControlInput1" class="form-label">Upload your Activity Proposal Form (APF)</label>
+                            <input multiple name="file" type="file" class="form-control" placeholder="Input">
+                        </div>
+                        <br>
+
                         <button type="submit" class="btn btn-primary btn-sm">Submit</button>
                     </form>
                 </div>
@@ -127,6 +141,40 @@
                         venueSelect.append('<option value="' + venue.id + '">' + venue.name + '</option>');
                     });
                 });
+            }
+        });
+    });
+</script>
+
+<script type ="text/javascript">
+    $(document).ready(function(){
+        $('#form_upload').on('submit',function(event)
+        {
+            event.preventDefault();
+
+            jQuery.ajax({
+                url: '{{ url('admin/reservation') }}',
+                type: 'POST',
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data)
+                {
+                    jQuery('#form_upload')[0].reset();
+                }
+            });
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('#school-org-checkbox').change(function() {
+            if(this.checked) {
+                $('#file-input-div').show();
+            } else {
+                $('#file-input-div').hide();
             }
         });
     });

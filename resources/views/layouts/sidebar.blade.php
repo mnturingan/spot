@@ -7,7 +7,7 @@
 
                     <li class="sidebar-item">
                         <a class="sidebar-link" href="{{url('/browse')}}">
-						<i class="align-middle" data-feather="book"></i> 
+						<i class="align-middle" data-feather="grid"></i> 
                             <span class="align-middle">Browse Venues</span>
                         </a>
                     </li>
@@ -15,14 +15,14 @@
                     <li class="sidebar-item">
                         <a class="sidebar-link" href="{{url('reservation/create')}}">
 						<i class="align-middle" data-feather="book"></i> 
-                            <span class="align-middle">Reserve</span>
+                            <span class="align-middle">Create Reservation</span>
                         </a>
                     </li>
             
                     <li class="sidebar-item">
                         <a class="sidebar-link" href="{{ route('reservation.my-reservations') }}">
-						<i class="align-middle" data-feather="book"></i> 
-                            <span class="align-middle">My Reservations</span>
+						<i class="align-middle" data-feather="package"></i> 
+                            <span class="align-middle">Manage Reservation</span>
                         </a>
                     </li>
                     
