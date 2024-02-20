@@ -7,7 +7,7 @@
             <div class="card flex-fill container">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <h1 class="h3 col-sm-8"><strong>Pending Reservation</strong></h1>
+                        <h1 class="h3 col-sm-8"><strong>Pending </strong></h1>
                     </div>
                 </div>
                 <table class="table table-hover my-0">
