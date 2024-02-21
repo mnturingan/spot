@@ -117,4 +117,6 @@ class VenueTypeController extends Controller
         VenueTypeImage::where('id',$img_id)->delete();
         return response()->json(['bool'=>true]);
     }
+
+    
 }

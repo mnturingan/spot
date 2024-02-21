@@ -6,7 +6,7 @@
                 <ul class="sidebar-nav">
 
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="{{url('/browse')}}">
+                        <a class="sidebar-link" href="{{url('browse-venues')}}">
 						<i class="align-middle" data-feather="grid"></i> 
                             <span class="align-middle">Browse Venues</span>
                         </a>

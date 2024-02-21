@@ -80,3 +80,5 @@ Route::put('reservation/{id}', [ReservationController::class, 'update'])->name('
 
 
 Route::get('my-reservations', [ReservationController::class, 'myReservations'])->name('reservation.my-reservations');
+
+
