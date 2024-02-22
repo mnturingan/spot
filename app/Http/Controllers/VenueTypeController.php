@@ -121,5 +121,10 @@ class VenueTypeController extends Controller
         return response()->json(['bool'=>true]);
     }
 
+    public function browseVenues()
+    {
+        // Your logic for browsing venues goes here
+        return view('browse-venues');
+    }
     
 }

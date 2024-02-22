@@ -1,4 +1,3 @@
-
 <nav class="navbar navbar-expand navbar-light navbar-bg">
                 <a class="sidebar-toggle js-sidebar-toggle">
                     <i class="hamburger align-self-center"></i>
@@ -12,7 +11,7 @@
                             </a>
                             @auth
                                 <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                                <span class="text-dark">{{ auth()->user()->name }}</span>
+                                	<span class="text-dark">{{ auth()->user()->name }}</span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end">
                                     <form action="{{ route('user.logout') }}" method="post">
