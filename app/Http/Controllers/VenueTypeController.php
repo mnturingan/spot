@@ -10,6 +10,8 @@ use App\Models\VenueTypeImage;
 
 use Illuminate\Support\Facades\Storage;
 
+use Alert;
+
 class VenueTypeController extends Controller
 {
     /**
@@ -53,8 +55,9 @@ class VenueTypeController extends Controller
             $imgData->save();
         }
         
+        Alert::success('Congrats', 'Data is added successfully!');
 
-        return redirect('admin/venueType/create')->with('success', "Data is added.");
+        return redirect('admin/venueType/create');
     }
 
     /**

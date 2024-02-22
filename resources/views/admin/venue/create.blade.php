@@ -12,9 +12,7 @@
                 </div>
 
                 <div class="mb-3">
-                    @if(Session::has('success'))
-                        <p class="text-success">{{session('success')}}</p>
-                    @endif
+                    @include('sweetalert::alert') 
                     <form method="post" action="{{url('admin/venue')}}">
                         @csrf
                         <label for="titleInput" class="form-label">Select Venue Type</label>

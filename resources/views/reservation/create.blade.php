@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <main class="content">
     <div class="container-fluid p-0">
         <div class="card flex-fill container">
@@ -10,15 +11,7 @@
                 </div>
 
                 <div class="mb-3">
-                    @if($errors->any())
-                        @foreach($errors->all() as $error)
-                            <p class="text-danger">{{$error}}</p>
-                        @endforeach
-                    @endif
-
-                    @if(Session::has('success'))
-                        <p class="text-success">{{session('success')}}</p>
-                    @endif
+                    @include('sweetalert::alert')
                     <form enctype="multipart/form-data" method="post" action="{{url('admin/reservation')}}" id="form_upload">
                         @csrf
                         <label for="reservation_date" class="form-label reserve-date">Reservation Date</label>

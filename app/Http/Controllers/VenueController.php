@@ -8,6 +8,8 @@ use App\Models\VenueType;
 
 use App\Models\Venue;
 
+use Alert;
+
 class VenueController extends Controller
 {
     /**
@@ -40,7 +42,9 @@ class VenueController extends Controller
         $data->description = $request->description;
         $data->save();
 
-        return redirect('admin/venue/create')->with('success', "Data is added.");
+        Alert::success('Congrats', 'Data is added successfully!');
+        
+        return redirect('admin/venue/create');
     }
 
     /**

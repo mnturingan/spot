@@ -71,7 +71,8 @@ Route::middleware(['auth'])->group(function () {
 
 
 // Reservation
-Route::get('reservation/{id}/delete', [ReservationController::class, 'destroy']);
+Route::get('admin/reservation/{id}/delete', [ReservationController::class, 'destroy']);
+
 Route::match(['get', 'post'], 'reservation/available-venues', [ReservationController::class, 'available_venues']);
 Route::resource('admin/reservation', ReservationController::class);
 

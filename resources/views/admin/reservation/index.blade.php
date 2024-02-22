@@ -10,9 +10,6 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <h1 class="h3 col-sm-8"><strong>All Reservations</strong></h1>
                 </div>
-                @if(Session::has('success'))
-                        <p class="text-success">{{session('success')}}</p>
-                @endif
             </div>
             <table class="table table-hover my-0">
                 <thead>
@@ -62,7 +59,7 @@
                                             <i data-feather="x-square"></i> Reject
                                         </a>
                                     @endif
-                                    <a href="{{url('admin/reservation/'.$reservation->id.'/delete')}}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to delete this data?')">
+                                    <a href="{{url('admin/reservation/'.$reservation->id.'/delete')}}" class="btn btn-danger btn-sm" onclick="confirmation(event)">
                                         <i data-feather="trash"></i></a>
                                 </td>
                             </tr>
@@ -74,3 +71,26 @@
 </main>
 
 @endsection
+
+<script type="text/javascript">
+
+    function confirmation(ev) 
+    {
+        ev.preventDefault();
+        var urlToRedirect = ev.currentTarget.getAttribute('href');
+        console.log(urlToRedirect);
+
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this data!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willCancel) => {
+                if (willCancel) {
+                    window.location.href = urlToRedirect;
+                 }
+        });
+    }
+</script>

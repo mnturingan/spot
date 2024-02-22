@@ -14,6 +14,8 @@ use App\Models\Venue;
 
 use App\Models\Reservation;
 
+use Alert;
+
 class ReservationController extends Controller
 {
     /**
@@ -77,9 +79,9 @@ class ReservationController extends Controller
 
         $data->save();
         
-        return response()->json(['success'=>'You have successfully reserved a venue.']);
+        Alert::success('Success', 'Reservation has been created successfully!');
 
-        return redirect('reservation/create')->with('success', "Data is added.");
+        return redirect()->back();
     }
 
     /**
@@ -120,7 +122,7 @@ class ReservationController extends Controller
     public function destroy(string $id)
     {
         Reservation::where('id', $id)->delete();
-        return redirect('reservation')->with('success', 'Data is deleted');
+        return redirect('admin/reservation')->with('success', 'Data is deleted');
     }
 
     // Check availability

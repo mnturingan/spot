@@ -12,15 +12,7 @@
                 </div>
 
                 <div class="mb-3">
-                    @if($errors->any())
-                        @foreach($errors->all() as $error)
-                            <p class="text-danger">{{$error}}</p>
-                        @endforeach
-                    @endif
-
-                    @if(Session::has('success'))
-                        <p class="text-success">{{session('success')}}</p>
-                    @endif
+                @include('sweetalert::alert')
                     <form enctype="multipart/form-data" method="post" action="{{url('admin/venueType')}}">
                         @csrf
                         <label for="exampleFormControlInput1" class="form-label">Title</label>

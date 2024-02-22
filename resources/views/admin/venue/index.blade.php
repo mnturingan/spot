@@ -40,7 +40,7 @@
                                         <i data-feather="eye"></i></a>
                                     <a href="{{url('admin/venue/'.$d->id.'/edit')}}" class="btn btn-primary btn-sm">
                                         <i data-feather="edit"></i></a>
-                                    <a href="{{url('admin/venue/'.$d->id.'/delete')}}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to delete this data?')">
+                                    <a href="{{url('admin/venue/'.$d->id.'/delete')}}" class="btn btn-danger btn-sm" onclick="confirmation(event)">
                                         <i data-feather="trash"></i></a>
                                 </td>
                             </tr>
@@ -57,3 +57,26 @@
 </main>
 
 @endsection
+
+<script type="text/javascript">
+
+    function confirmation(ev) 
+    {
+        ev.preventDefault();
+        var urlToRedirect = ev.currentTarget.getAttribute('href');
+        console.log(urlToRedirect);
+
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this data!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willCancel) => {
+                if (willCancel) {
+                    window.location.href = urlToRedirect;
+                 }
+        });
+    }
+</script>
