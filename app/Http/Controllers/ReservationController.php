@@ -78,10 +78,8 @@ class ReservationController extends Controller
         $data->school_org = $request->input('school_org') ? true : false;
 
         $data->save();
-        
-        Alert::success('Success', 'Reservation has been created successfully!');
 
-        return redirect()->back();
+        return redirect()->back()->with(['success' => 'Reservation has been created successfully!']);
     }
 
     /**
@@ -176,7 +174,15 @@ class ReservationController extends Controller
 
     public function myReservations()
     {
-        $userReservations = Reservation::where('user_id', auth()->id())->get();
+        $userReservations = Reservation::where('user_id', auth()->id())
+                                    ->orderBy('created_at', 'desc')
+                                    ->get();
         return view('reservation.my-reservations', ['userReservations' => $userReservations]);
+    }
+
+    public function destroy_user(string $id)
+    {
+        Reservation::where('id', $id)->delete();
+        return redirect('my-reservations')->with('success', 'Reservation is cancelled');
     }
 }

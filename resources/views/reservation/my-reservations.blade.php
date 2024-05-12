@@ -59,6 +59,9 @@
                             @else
                             <span class="badge bg-warning">Waiting</span>
                             @endif
+                            <a href="{{ url('my-reservation/' . $reservation->id . '/cancel') }}" class="btn btn-danger btn-sm" onclick="confirmation(event)">
+                                <i data-feather="x-circle"></i>
+                            </a>
                         </td>
                     </tr>
                     @endforeach
@@ -69,3 +72,25 @@
 </main>
 
 @endsection
+<script type="text/javascript">
+
+    function confirmation(ev) 
+    {
+        ev.preventDefault();
+        var urlToRedirect = ev.currentTarget.getAttribute('href');
+        console.log(urlToRedirect);
+
+        swal({
+            title: "Cancel Reservation?",
+            text: "Once canceled, you will have to make a new reservation. Continue?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willCancel) => {
+                if (willCancel) {
+                    window.location.href = urlToRedirect;
+                 }
+        });
+    }
+</script>

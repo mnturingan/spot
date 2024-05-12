@@ -13,15 +13,6 @@
                     </a>
                 </div>
                 <div class="mb-3">
-                    @if($errors->any())
-                        @foreach($errors->all() as $error)
-                            <p class="text-danger">{{$error}}</p>
-                        @endforeach
-                    @endif
-
-                    @if(Session::has('success'))
-                        <p class="text-success">{{session('success')}}</p>
-                    @endif
                     <label class="form-label">Reservation Date</label>
                     <input type="text" class="form-control" placeholder="Disabled input" value="{{ $reservation->reservation_date }}" disabled>
                     <br>
@@ -59,6 +50,7 @@
                     @endif
                     <form enctype="multipart/form-data" method="post" action="{{url('admin/reservation')}}">
                         @csrf
+                        @method('PUT')
                         <label for="reservation_date" class="form-label reserve-date">Reservation Date</label>
                         <input name="reservation_date" type="date" class="form-control">
                         <br>

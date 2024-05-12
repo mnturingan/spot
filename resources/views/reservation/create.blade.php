@@ -9,13 +9,20 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <h1 class="h3 col-sm-8"><strong>Make a Reservation</strong></h1>
                 </div>
-
                 <div class="mb-3">
-                    @include('sweetalert::alert')
+                @if($errors->any())
+                        @foreach($errors->all() as $error)
+                            <p class="text-danger">{{$error}}</p>
+                        @endforeach
+                    @endif
+
+                    @if(Session::has('success'))
+                        <p class="text-success">{{session('success')}}</p>
+                    @endif
                     <form enctype="multipart/form-data" method="post" action="{{url('admin/reservation')}}" id="form_upload">
                         @csrf
                         <label for="reservation_date" class="form-label reserve-date">Reservation Date</label>
-                        <input name="reservation_date" type="date" class="form-control">
+                        <input name="reservation_date" type="date" class="form-control" min="{{ date('Y-m-d', strtotime('+2 days')) }}">
                         <br>
 
                         <label for="start_time" class="form-label">Start Time</label>
@@ -72,6 +79,7 @@
 @endsection
 
 @section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script type="text/javascript">
     $(document).ready(function(){
         $(".start-time, #start_time, #end_time").on('change', function () {

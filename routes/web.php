@@ -67,10 +67,7 @@ Route::middleware(['auth'])->group(function () {
 
     });// End Group Admin Middleware
 
-});
-
-
-// Reservation
+    // Reservation
 Route::get('admin/reservation/{id}/delete', [ReservationController::class, 'destroy']);
 
 Route::match(['get', 'post'], 'reservation/available-venues', [ReservationController::class, 'available_venues']);
@@ -83,3 +80,10 @@ Route::put('reservation/{id}', [ReservationController::class, 'update'])->name('
 Route::get('my-reservations', [ReservationController::class, 'myReservations'])->name('reservation.my-reservations');
 
 Route::get('browse-venues', [VenueTypeController::class, 'browseVenues'])->name('browse-venues');
+
+Route::get('my-reservation/{id}/cancel', [ReservationController::class, 'destroy_user'])->name('my-reservation.cancel');
+
+});
+
+
+
